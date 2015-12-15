@@ -1,6 +1,6 @@
 container_name := awscli
 container_registry := nordstrom
-container_release := 1.9.10
+# container_release := 1.9.10
 
 .PHONY: build tag release
 
