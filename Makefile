@@ -1,14 +1,17 @@
-container_name := awscli
-container_registry := nordstrom
-container_release := 1.10
+container_registry := quay.io/nordstrom
+container_name := aws-cli
+awscli_version := 1.10.40
+container_release := 1.0
 
-.PHONY: build tag release
+.PHONY: build/image tag/image push/image
 
-build: Dockerfile $(build_container_prereqs)
-	docker build -t $(container_name) .
+build/image:
+	docker build \
+		--build-arg AWSCLI_VERSION=$(awscli_version) \
+		-t $(container_name) .
 
-tag: build
-	docker tag -f $(container_name) $(container_registry)/$(container_name):$(container_release)
+tag/image: build/image
+	docker tag $(container_name) $(container_registry)/$(container_name):$(container_release)
 
-# release: tag
-# 	docker push $(container_registry)/$(container_name):$(container_release)
+push/image: tag/image
+	docker push $(container_registry)/$(container_name):$(container_release)

@@ -1,6 +1,12 @@
-FROM nordstrom/python:2.7
-MAINTAINER Innovation Platform Team "invcldtm@nordstrom.com"
+FROM quay.io/nordstrom/python:2.7
+MAINTAINER Store Modernization Platform Team "invcldtm@nordstrom.com"
 
-RUN ["pip", "install", "awscli>=1.10,<1.10.99"]
+USER root
+ARG AWSCLI_VERSION
+RUN pip install --upgrade pip && \
+    pip install setuptools && \
+    pip install awscli==${AWSCLI_VERSION}
+
+USER ubuntu
 
 ENTRYPOINT ["/usr/local/bin/aws"]
