@@ -1,5 +1,5 @@
 container_registry := quay.io/nordstrom
-container_name := aws-cli
+container_name := awscli
 awscli_version := 1.10.40
 container_release := $(awscli_version)
 
@@ -7,6 +7,8 @@ container_release := $(awscli_version)
 
 build/image:
 	docker build \
+		--build-arg http_proxy=http://webproxy.nordstrom.net:8181 \
+		--build-arg https_proxy=http://webproxy.nordstrom.net:8181 \
 		--build-arg AWSCLI_VERSION=$(awscli_version) \
 		-t $(container_name) .
 
