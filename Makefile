@@ -1,7 +1,7 @@
 container_registry := quay.io/nordstrom
 container_name := aws-cli
 awscli_version := 1.10.40
-container_release := 1.0
+container_release := $(awscli_version)
 
 .PHONY: build/image tag/image push/image
 
