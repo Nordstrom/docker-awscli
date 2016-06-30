@@ -7,8 +7,6 @@ container_release := $(awscli_version)
 
 build/image:
 	docker build \
-		--build-arg http_proxy=http://webproxy.nordstrom.net:8181 \
-		--build-arg https_proxy=http://webproxy.nordstrom.net:8181 \
 		--build-arg AWSCLI_VERSION=$(awscli_version) \
 		-t $(container_name) .
 

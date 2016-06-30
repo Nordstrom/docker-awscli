@@ -7,6 +7,4 @@ RUN pip install --upgrade pip && \
     pip install setuptools && \
     pip install awscli==${AWSCLI_VERSION}
 
-USER ubuntu
-
 ENTRYPOINT ["/usr/local/bin/aws"]
