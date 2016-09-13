@@ -1,5 +1,5 @@
 FROM quay.io/nordstrom/python:2.7
-MAINTAINER Store Modernization Platform Team "invcldtm@nordstrom.com"
+MAINTAINER Nordstrom Kubernetes Platform Team "stmdrnztnpfrm@nordstrom.com"
 
 USER root
 ARG AWSCLI_VERSION
