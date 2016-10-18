@@ -1,15 +1,19 @@
 image_registry := quay.io/nordstrom
 image_name := awscli
-awscli_version := 1.10.62
-image_release := $(awscli_version)
+awscli_version := 1.11.5
+image_release := $(awscli_version)-1
 
-proxy_url := http://webproxy.nordstrom.net:8181
-build_args ?= --build-arg AWSCLI_VERSION=$(awscli_version) --build-arg http_proxy=$(proxy_url) --build-arg https_proxy=$(proxy_url)
+ifdef http_proxy
+build_args := --build-arg="http_proxy=$(http_proxy)"
+build_args += --build-arg="https_proxy=$(http_proxy)"
+endif
+
+build_args += --build-arg="AWSCLI_VERSION=$(awscli_version)"
 
 .PHONY: build/image tag/image push/image
 
 build/image:
-	docker build -t $(image_name) $(build_args) .
+	docker build $(build_args) -t $(image_name) .
 
 tag/image: build/image
 	docker tag $(image_name) $(image_registry)/$(image_name):$(image_release)
