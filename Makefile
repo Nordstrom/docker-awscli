@@ -1,6 +1,6 @@
 image_registry := quay.io/nordstrom
 image_name := awscli
-awscli_version := 1.11.5
+awscli_version := 1.11.30
 image_release := $(awscli_version)-1
 
 ifdef http_proxy
