@@ -10,4 +10,4 @@ RUN pip install --upgrade pip \
  && pip install setuptools \
  && pip install awscli==${AWSCLI_VERSION}
 
-USER ubuntu
+USER nordstrom
